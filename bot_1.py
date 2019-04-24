@@ -6,7 +6,7 @@ import asyncio
 import datetime
 import youtube_dl
 
-TOKEN = 'NTYxNDU4ODcyOTYzODI1NjY3.XJ8h1g.85m9kbVEBJJBDGeChU5mgQIB7SY'
+TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 client = commands.Bot(command_prefix='!')
 
 players = {}
@@ -125,9 +125,9 @@ async def showinfo():
     )
     # modify embed
     embed.set_footer(text='The end')
-    embed.set_image(url='https://media.discordapp.net/attachments/360451295699795968/570306966979870739/pepochair.gif')
-    embed.set_thumbnail(url='https://media.discordapp.net/attachments/360451295699795968/570307322707050503/mona.gif?width=203&height=300')
-    #embed.author(name='Arsen1c', icon_url='https://i.pinimg.com/originals/4d/0c/9d/4d0c9deece33de55ad09dc59d4994b23.jpg')
+    embed.set_image(url='<some_image_link>')
+    embed.set_thumbnail(url='<some_image_link>')
+    #embed.author(name='xxxx', icon_url='<some_image_link>')
     embed.add_field(name='!ping', value='pong', inline=False)
     embed.add_field(name='!date', value='Month Day, Year', inline=True)
     embed.add_field(name='!chutiya', value='Tu chutiya!', inline=True)
