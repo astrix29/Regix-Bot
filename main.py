@@ -22,7 +22,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    server = client.get_guild(493402580559331328)
+    server = client.get_guild(<add_guild_number_here>)
     # Lets count the number of memebers.
     if '!members' == message.content.lower():
         await message.channel.send(f'```py\nThis server has {server.member_count} members```')
@@ -67,10 +67,10 @@ async def on_message(message):
     await client.process_commands(message)
     
     
-
+# send DM
 @client.command()
 async def dm(ctx):
-    await ctx.author.send('``I love you!\nTu toh dev manus nikkla re!``')
+    await ctx.author.send('<DM_MESSAGE>')
 
 
 # ping pong
@@ -82,12 +82,12 @@ async def ping(ctx):
 @client.command()
 async def chutiya(ctx): 
     await ctx.send('``Tu chutiya!``')
-
+# waste command
 @client.command()
 async def hey(ctx):
     await ctx.send('``Hey, sexy!``')
 
-
+# waste command
 @client.command()
 async def stop(ctx):
     await ctx.send('``Aaj mairku rokna nahi re baba``')
@@ -102,7 +102,7 @@ async def echo(ctx,*args):
         output += word
         output += ' '
     await ctx.send(output)
-# Motivate me   
+# wasted command . Motivate me   
 @client.command()
 async def utha(ctx):
     sentence = '``Kaam kar bey, uthh!``'
@@ -136,7 +136,7 @@ async def date(ctx):
     sentence = '```Today is {: %B %d, %Y}. Have a sexy day!```'.format(today)
     await ctx.send(sentence)
 
-
+# getting users avatar
 @client.command()
 async def avatar(ctx, member: discord.Member):
     show_avatar  = discord.Embed(
@@ -160,9 +160,6 @@ async def servericon(ctx):
     await ctx.send(discord.Guild.icon_url)
 
 
-@client.command()
-async def membercount(ctx):
-    id = client.get
 
 # lets Math.
 '''add'''
