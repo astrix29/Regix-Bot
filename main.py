@@ -236,33 +236,6 @@ async def helpme(ctx):
     await ctx.send(embed=embed_help)
 
 
-    '''Instagram Links'''
-@client.command()
-async def nicinsta(ctx):
-    '''open_browser = webbrowser.open('https://www.instagram.com/_.cyph3r_/')
-    await ctx.author.send(open_browser)'''
-    nic = discord.Embed(
-        #title = 'Instagram',
-        #description = 'This is Arsenic\'s insta',
-        color = discord.Color.purple()
-    )
-    nic.add_field(name='Arsenic\'s Instagram:', value='https://www.instagram.com/_.cyph3r_/')
-
-    await ctx.send(embed=nic)
-   
-   # Links Zappers instagram
-@client.command()
-async def zapinsta(ctx):
-    '''open_browser = webbrowser.open('https://www.instagram.com/ashishjustgotreal/')
-    await ctx.author.send(open_browser)'''
-    zap = discord.Embed(
-        #title = 'Instagram',
-        #description = 'This is Zapper\'s Instagram',
-        color = discord.Color.purple()
-    )
-    zap.add_field(name='Zapper\'s Instagram:', value='https://www.instagram.com/<link>/')
-    
-    await ctx.send(embed=zap)
 
 
 @client.command(pass_context=True, aliases=['google'])
