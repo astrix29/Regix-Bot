@@ -12,7 +12,6 @@ client = commands.Bot(command_prefix='!')
 @client.event       
 async def on_ready():
     game = '<playing>'
-    #url= 'https://www.twitch.tv/cohhcarnage'
     await client.change_presence(status=discord.Status.idle, activity=discord.Game(name=game))
     #Twitching
     #await client.change_presence(status=discord.Status.idle,activity=discord.Streaming(name='Twitching', url=url))#, afk=False)
