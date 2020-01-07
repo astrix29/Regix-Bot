@@ -8,7 +8,7 @@ import time
 import youtube_dl
 
 
-TOKEN = 'NTYxNDU4ODcyOTYzODI1NjY3.XJ8h1g.85m9kbVEBJJBDGeChU5mgQIB7SY'
+TOKEN = 'XXXXXXXXXXXXXXXXXXXx'
 client = commands.Bot(command_prefix='!')
 
 
