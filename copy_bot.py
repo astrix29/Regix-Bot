@@ -8,9 +8,6 @@ import json
 import requests
 from googletrans import Translator, constants
 from bs4 import BeautifulSoup as bs
-#import youtube_dl
-
-#from googlesearch import search
 
 TOKEN = 'NTYxNDU4ODcyOTYzODI1NjY3.XnSbUA.NoupjGFHCivfiwzgOg8qhOo_IY8'
 
@@ -181,6 +178,7 @@ async def astroiss(ctx):
         astroiss_embed.add_field(name="‎‎‎‎‎ ‎", value=f"**{idx}**. ``{item}``",inline=False)
     await ctx.send(embed=astroiss_embed)
 
+# This function will return YT video's details in a Dictionary.
 def get_video_info(url):
     # download html code
     request = requests.get(url)
@@ -273,7 +271,8 @@ async def translate(ctx, *, content):
         langauge_embed.add_field(name=f"**\n\nLangauge codes**", value="**[Open codes list](%s)**" % link, inline=False)
         # langauge_embed.set_footer(text="**[Open Country List Link](%s)**" % link)
         await ctx.send(embed=langauge_embed)                    
-                          
+
+##### Calling function which takes the TOKEN and then run the bot                          
 client.run(TOKEN)  
 
 
