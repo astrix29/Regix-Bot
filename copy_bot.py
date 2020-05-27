@@ -1,4 +1,4 @@
-# ON MESSAGE FUNCION HAS PROIRITY OVER COMMAND.
+##### ON MESSAGE FUNCION HAS PROIRITY OVER COMMAND.
 import discord
 from discord.ext import commands
 import asyncio
@@ -6,48 +6,43 @@ import datetime
 import time
 import json
 import requests
+from googletrans import Translator, constants
 from bs4 import BeautifulSoup as bs
 #import youtube_dl
 
 #from googlesearch import search
 
-
-
 TOKEN = 'NTYxNDU4ODcyOTYzODI1NjY3.XnSbUA.NoupjGFHCivfiwzgOg8qhOo_IY8'
 
 client = commands.Bot(command_prefix='^')
 
-
+#### On Ready
 @client.event
 async def on_ready():
     game = discord.Game('^helpme for help')
     await client.change_presence(status=discord.Status.online,activity=game, afk=True)
     print('Bot is ready!')
 
-# SENDING DM
-
+#### Dm user
 @client.command()
 async def dm(ctx):
     await ctx.author.send('**Ye DeviPrasad ka number nahi hai, phone rakh!**')
 
-# ping pong
+#### ping pong
 @client.command()
 async def ping(ctx):
     await ctx.send('**Pong! Bot is up and running!**')
 
-'''Users Avatar. Simple version'''
-
-'''@client.command(pass_context=True, no_pm=True)
-
+'''
+#### Simple Avatar Display
+@client.command(pass_context=True, no_pm=True)
 async def avatar(ctx, member: discord.Member):
-
     """User Avatar"""
+    await ctx.send("{}".format(member.avatar_url))
+'''
 
-    await ctx.send("{}".format(member.avatar_url))'''
-
-
+#### Show me your Avatar
 @client.command()
-
 async def avatar(ctx, member: discord.Member=None):  
     #await ctx.send("{}".format(member.avatar_url))
     if not member:
@@ -60,10 +55,7 @@ async def avatar(ctx, member: discord.Member=None):
     show_avatar.set_image(url="{}".format(member.avatar_url))
     await ctx.send(embed=show_avatar)
 
-
-
-# Lets Ehco everything. There's a simpler version available, google it.
-
+#### ECHO command
 @client.command(pass_context=True)
 async def echo(ctx,*args):
     '''This will make an echo'''
@@ -74,51 +66,38 @@ async def echo(ctx,*args):
     await ctx.channel.purge(limit=1)
     await ctx.send(output)
 
-
-# Lets clear the clutter.
-
+#### Clear command
 @client.command(pass_context=True)
-# @Client.command(pass_context = True)
 async def clear(ctx, amount=2):
     await ctx.channel.purge(limit=amount)
 
-   
 
-
-# Simple math.
-
-'''add'''
-
+#### Add
 @client.command()
 async def add(ctx, a: int, b : int):
     await ctx.send('``Ans. ``' + str(a + b))
 
-'''subtract'''      
-
+#### Subtract
 @client.command()
 async def subtract(ctx, a: int, b: int):
     await ctx.send('``Ans. ``' + str(a - b))
 
-'''multiply'''
-
+#### Multiply
 @client.command()
 async def multiply(ctx, a: int, b: int):
     await ctx.send('``Ans. ``' + str(a * b))
 
-'''divide'''
-
+#### Divide
 @client.command()
 async def divide(ctx, a: int, b: int):
     await ctx.send('``Ans. ``' + str(a / b))
 
-'''modulus'''
-
+#### Modulus
 @client.command()
 async def modulus(ctx, a: int, b: int):
     await ctx.send('``Ans. ``' + str(a % b))
 
-'''Display Embed info'''
-
+#### TimePass ShowInfo
 @client.command()
 async def showinfo(ctx):
     # Creating embed
@@ -137,10 +116,8 @@ async def showinfo(ctx):
     #embed.add_field(name='Server ID', value=id, inline=True)
     await ctx.send(embed=info_embed)
 
-'''Help Command'''
-
+#### HELPME
 @client.command()
-
 async def helpme(ctx):
     embed_help = discord.Embed(
         title = 'Help arrived!',
@@ -164,11 +141,9 @@ async def helpme(ctx):
     embed_help.add_field(name='**avatar @member**', value='**Returns avatar of mentioned member**',inline=True)
     embed_help.add_field(name='**clear <amount>**', value='**Clears messages in a channel.**',inline=True)
     embed_help.add_field(name='**dm**', value='**Still not decided**',inline=True)
-
     await ctx.send(embed=embed_help)
 
-# Getting location on google maps
-
+#### Show on Google Maps
 @client.command()
 async def whereis(ctx, *, content):
     cont = "https://www.google.com/maps/place/{}".format(content)
@@ -178,6 +153,7 @@ async def whereis(ctx, *, content):
     except discord.ext.commands.errors.MissingRequiredArgument:
         await ctx.send("Usage: !whereis <some_location>")
   
+#### ASTROISS
 @client.command()
 async def astroiss(ctx):
     response = requests.get("http://api.open-notify.org/astros.json")
@@ -235,7 +211,8 @@ def get_video_info(url):
     result['channel'] = {'name': channel_name, 'url': channel_url,'subscribers': channel_subscribers}
     # return the result
     return result
-  
+
+#### Send YT video details
 @client.command()
 async def yt(ctx, *, content):
     data = get_video_info(content)
@@ -259,6 +236,44 @@ async def yt(ctx, *, content):
     video_embed.add_field(name=f"**Channel URL**", value="**[Channel Dikhao](%s)**" % data['channel']['url'], inline=False)
     await ctx.send(embed=video_embed)
 
+#### TRANSLATION                        
+@client.command()
+async def translate(ctx, *, content):
+    translator = Translator()
+    translation = translator.translate(content)
+    detection = translator.detect(content)
+    spli = content.split(' ')
+    link = "https://www.w3schools.com/tags/ref_language_codes.asp"
+
+    # await ctx.send(f"Langauge: {spli[0]}")
+    if(spli[0] in constants.LANGUAGES):
+        lang_embed = discord.Embed(
+            title = f"Langauge detected: {constants.LANGUAGES[detection.lang].upper()}",
+            color = discord.Color.dark_grey(),
+            )        
+        translation = translator.translate(content[3:], dest=spli[0])
+        detect = translator.detect(translation.text)
+        lang_embed.add_field(name=f"**Original ({constants.LANGUAGES[detection.lang].title()})**", value=f"**{content[3:]}**", inline=False)
+        lang_embed.add_field(name=f"**Translation ({constants.LANGUAGES[detect.lang].title()})**", value=f"**{translation.text}**", inline=False)
+        lang_embed.add_field(name=f"**\n\nCountry List**", value="**[Open Country List Link](%s)**" % link, inline=False)
+
+        await ctx.send(embed=lang_embed)
+
+        # await ctx.send(f"{translation.origin} ({translation.src}) --> {translation.text} ({translation.dest})")
+        # await ctx.send(f"Langauge not found mitrr.")
+
+    elif(spli[0] not in constants.LANGUAGES):
+        langauge_embed = discord.Embed(
+            title = f"Langauge detected: {constants.LANGUAGES[detection.lang].upper()}",
+            color = discord.Color.dark_grey(),
+            description = 'Language Not Specified. Translated to **English**'
+            )
+        langauge_embed.add_field(name=f"**Original ({constants.LANGUAGES[detection.lang]})**", value=f"**{content}**", inline=False)
+        langauge_embed.add_field(name=f"**Translation (English)**", value=f"**{translation.text}**", inline=False)
+        langauge_embed.add_field(name=f"**\n\nLangauge codes**", value="**[Open codes list](%s)**" % link, inline=False)
+        # langauge_embed.set_footer(text="**[Open Country List Link](%s)**" % link)
+        await ctx.send(embed=langauge_embed)                    
+                          
 client.run(TOKEN)  
 
 
