@@ -48,7 +48,6 @@ async def avatar(ctx, member: discord.Member=None):
         title = 'Ye le tera Avatar!',
         color = discord.Color.dark_grey()
     )
-    #show_avatar.setfooter(text='Here\'s {}\'s Avatar. Mmmm looks sexy!'.format(member))
     show_avatar.set_image(url="{}".format(member.avatar_url))
     await ctx.send(embed=show_avatar)
 
@@ -124,8 +123,6 @@ async def helpme(ctx):
     embed_help.set_footer(text='Bas itna hi.')
     embed_help.set_image(url='https://media.discordapp.net/attachments/530002554688503808/571677365755838474/15_avatar_middle.jpg')
     # embed_help.set_thumbnail(url='https://media.discordapp.net/attachments/530002554688503808/571676560873226240/442350001805590538.gif')
-    # embed_help.add_field(name='``!helpme``', value=' ‎', inline=True)
-    #embed_help.add_field(name='!dm', value='Send\'s you a DM',inline=False)
     embed_help.add_field(name='**add x y**', value='**Adds 2 numbers**',inline=True)
     embed_help.add_field(name='**subtract x y**', value='**Subtracts 2 numbers**',inline=True)
     embed_help.add_field(name='**divide x y**', value='**Divides 2 numbers**',inline=True)
@@ -214,9 +211,6 @@ def get_video_info(url):
 @client.command()
 async def yt(ctx, *, content):
     data = get_video_info(content)
-    keys = ['Title', 'Views', 'Description', 'Date Published', 'Likes', 'Dislikes',
-    'Channel Name', 'Channel URL', 'Channel Subs']
-    # await ctx.send(f"Title: {data['title']}")
     video_embed = discord.Embed(
         title = 'Youtube Video Details.',
         color = discord.Color.red()
