@@ -149,25 +149,6 @@ async def wall(ctx, content=None):
     else:
         print('Some error occured')
         await ctx.send('**Watch what you type nigga!**')    
-    
-#### TimePass ShowInfo
-@client.command()
-async def showinfo(ctx):
-    # Creating embed
-    info_embed = discord.Embed(
-        title = 'Regix Bot',
-        description = 'Made for learning purpose.',
-        color = discord.Color.blue()
-    )
-    # modify embed
-    info_embed.set_footer(text='The end')
-    info_embed.set_image(url='https://media.discordapp.net/attachments/360451295699795968/570306966979870739/pepochair.gif')
-    info_embed.set_thumbnail(url='https://media.discordapp.net/attachments/360451295699795968/570307322707050503/mona.gif?width=203&height=300')
-    #embed.author(name='Arsen1c', icon_url='https://i.pinimg.com/originals/4d/0c/9d/4d0c9deece33de55ad09dc59d4994b23.jpg')
-    info_embed.add_field(name='!ping', value='pong', inline=False)
-    info_embed.add_field(name='!date', value='Month Day, Year', inline=True)
-    #embed.add_field(name='Server ID', value=id, inline=True)
-    await ctx.send(embed=info_embed)
 
 ############################ HELPME ############################
 @client.command()
