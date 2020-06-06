@@ -148,22 +148,86 @@ async def wall(ctx, content=None):
         await ctx.send(embed=wall_embed)    
     else:
         print('Some error occured')
-        await ctx.send('**Watch what you type nigga!**')    
+        await ctx.send('**Watch what you type nigga!**')   
 
+############################ NSFW Porn ############################        
+@client.command()
+async def nsfw(ctx, *, content):
+    x = randint(0, 311)
+    y = randint(0, 228)
+    z = randint(1, 216)
+    bj = randint(1, 730)
+    cow = randint(1, 716)
+    em = discord.Embed()
+    cont_split = content.split()
+    # porngif.top/index.php?k=tits
+    # kitty: http://porngif.top/gif/kundicky/0030.gif
+    # hass: http://porngif.top/gif/zadky/0216.gif # upto 216
+    # bj: http://porngif.top/gif/koureni/0001.gif # upto 730
+    # cowgril: http://porngif.top/gif/na%20konicka/0000.gif # 716
+    # url = f"http://porngif.top/gif/prsa/0{x:03}.gif"
+    # print(url)
+    # em.set_image(url=url)
+    # if ctx.channel.is_nsfw():
+    #     await ctx.send(embed=em)
+    # else:
+    #     await ctx.send(f"Try in a NSFW channel fam.", delete_after=3)
+
+    if cont_split[0] == 'titty':
+        url = f"http://porngif.top/gif/prsa/0{x:03}.gif"
+        if ctx.channel.is_nsfw():
+            em.set_image(url=url)
+            await ctx.send(embed=em)
+        else:
+            await ctx.send("**Try in a NSFW channel fam.**", delete_after=5)
+    
+    elif cont_split[0] == 'kitty':
+        url = f"http://porngif.top/gif/kundicky/0{y:03}.gif"
+        if ctx.channel.is_nsfw():
+            em.set_image(url=url)
+            await ctx.send(embed=em)
+        else:
+            await ctx.send("**Try in a NSFW channel fam.**", delete_after=5)
+    elif cont_split[0] == 'butty':
+        url = f"http://porngif.top/gif/zadky/0{z:03}.gif"
+        if ctx.channel.is_nsfw():
+            em.set_image(url=url)
+            await ctx.send(embed=em)
+        else:
+            await ctx.send("**Try in a NSFW channel fam.**", delete_after=5)
+    elif cont_split[0] == 'bjob':
+        url = f"http://porngif.top/gif/koureni/0{bj:03}.gif"
+        if ctx.channel.is_nsfw():
+            em.set_image(url=url)
+            await ctx.send(embed=em)
+        else:
+            await ctx.send("**Try in a NSFW channel fam.**", delete_after=5)
+    elif cont_split[0] == 'cow':
+        url = f"http://porngif.top/gif/na%20konicka/0{cow:03}.gif"
+        if ctx.channel.is_nsfw():
+            em.set_image(url=url)
+            await ctx.send(embed=em)
+        else:
+            await ctx.send("**Try in a NSFW channel fam.**", delete_after=5) 
+    else:
+        em.add_field(name="Nsfw Commands", value="```- titty\n- kitty\n- butty\n- bjob\n- cow```")
+        em.set_footer(text="This message will be deleted in 10 seconds.")
+        await ctx.send(embed=em, delete_after=10)       
 ############################ HELPME ############################
 @client.command()
-async def helpme(ctx):
+async def help(ctx):
     link = "https://www.w3schools.com/tags/ref_language_codes.asp"
     embed_help = discord.Embed(
         title = 'Help arrived!',
         description = 'These are the available Help commands:',
         color = discord.Color.blue()
     )
-    embed_help.add_field(name=f'{"YouTube video details".upper()}', value='**Usage:** ``yt yt-video-link``',inline=False)
-    embed_help.add_field(name=f'{"Translation".upper()}', value='``translate``\n``translate <langauge-code>``\n[Language codes link](%s)' % link,inline=True)
-    embed_help.add_field(name=f'WALLPAPERS', value=f"``wall``\n``wall 1920``\n``wall 720``\n``wall iphone``", inline=True)
-    embed_help.add_field(name='MISCS', value=f"``doggo``,``avatar``, ``clear``, ``echo``, ``add subtract divide multiply modulus``, \n``weather <city>``\n``sendm @member <message>``", inline=False) 
+    embed_help.add_field(name=f'{"Translation".upper()}', value='```- t \n- t <langauge-code>\n```[Language codes link](%s)' % link,inline=True)
+    embed_help.add_field(name=f'WALLPAPERS', value=f"```- wall\n- wall 1920\n- wall 720\n- wall iphone```", inline=True)
+    embed_help.add_field(name='MISCS', value=f"```- doggo, avatar, clear, echo, server\n- weather <city>\n- sendm @member <message>\n- ytube yt-video-link\n- covid <country>\n- virus <URL>```", inline=False) 
+    embed_help.add_field(name="NSFW (Beta) ( ͡° ͜ʖ ͡°)", value=f"``- nsfwhelp``", inline=True)
     await ctx.send(embed=embed_help)
+
 
 ############################ Server info ############################    
 @client.command()
@@ -199,16 +263,6 @@ async def server(ctx):
     server_embed.add_field(name='**Server\'s Icon Link**', value="**[Link](%s)**" % str(guild.icon_url),inline=False)
     await ctx.send(embed=server_embed)
     
-############################ Google Maps ############################
-@client.command()
-async def whereis(ctx, *, content):
-    cont = "https://www.google.com/maps/place/{}".format(content)
-    icon = "https://colorlib.com/wp/wp-content/uploads/sites/2/google-maps-wordpress-plugins.png"
-    try:
-        await ctx.send(embed=discord.Embed(title="Google Maps",description="**[Yaha dekho bhai...](%s)**" % cont, color=discord.Color.darker_grey(), inline=True).set_thumbnail(url=icon))
-    except discord.ext.commands.errors.MissingRequiredArgument:
-        await ctx.send("Usage: !whereis <some_location>")
-  
 ############################ Astonaut's Names ############################
 @client.command()
 async def astroiss(ctx):
@@ -324,10 +378,55 @@ async def weather(ctx, *, content):
         await ctx.send(embed=weather_embed)
     else:
         await ctx.send("**City Not Found**")                          
+
+########################## COVID-19 Report ##########################                          
+@client.command()
+async def covid(ctx, *, content):
+    try:
+        argument = content.replace(" ", "-")
+        url = f"https://www.worldometers.info/coronavirus/country/{argument}/"
+        r = requests.get(url) # we donloaded the page
+        soup = bs(r.content, 'html.parser')
+        data = []
+        
+        for tags in soup.find_all(class_='maincounter-number'):
+            data.append(tags.text.strip())
+        
+        flag = soup.find_all('img')
+        # print(f"Flag Link: {flag[1]['src']}")
+        flag_url = f"https://www.worldometers.info{flag[1]['src']}"
+        value = randint(0, 0xffffff)
+        cont = soup.find('div', class_='content-inner')
+        roguh = []
+        for x in cont:
+            roguh.append(x)
+        foot = roguh[7].text.strip()
+
+        # Updates
+        new = soup.find_all('div', class_='news_body')
+        updates = []
+        for li in new:
+            updates.append(li.text)
+        # print(updates[0])
+        res = updates[0].split()
+        # print(res[0], res[4])
+        # try:
+        covid_embed = discord.Embed(title='Covid-19  🦠', color=discord.Color(value=value))
+        covid_embed.description = f"Covid-19 report for: **{argument.title()}**"
+        covid_embed.add_field(name='**Coronavirus Cases**', value=f"**{data[0]}**", inline=True)
+        covid_embed.add_field(name='**Deaths**', value=f"**{data[1]}**", inline=True)
+        covid_embed.add_field(name='**Recovered**', value=f"**{data[2]}**", inline=False)
+        covid_embed.add_field(name="**Updates**", value=f"**+{res[0]} cases\n+{res[4]} deaths**", inline=True)
+        covid_embed.set_thumbnail(url=flag_url)
+        covid_embed.set_footer(text=foot)
+        await ctx.send(embed=covid_embed)
+    except Exception:
+        error_embed = discord.Embed(description="Invalid Country", color=discord.Color(value=0xf70c0c))
+        await ctx.send(embed=error_embed, delete_after=3) 
                           
 ########################## TRANSLATION ############################                        
 @client.command()
-async def translate(ctx, *, content):
+async def t(ctx, *, content):
     translator = Translator()
     translation = translator.translate(content)
     detection = translator.detect(content)
@@ -360,6 +459,35 @@ async def translate(ctx, *, content):
         # langauge_embed.set_footer(text="**[Open Country List Link](%s)**" % link)
         await ctx.send(embed=langauge_embed)                  
 
+########################## Check for Malicious Links ##########################                          
+@client.command()
+async def virus(ctx, *, content):
+    # GET DOMAIN from URL: https://stackoverflow.com/questions/55862019/extract-domain-name-from-url-using-pythons-re-regex
+    print("URL:", content )
+    try:
+
+        # api- d1bbf8a2f78253458ec70c75701ddf550e388a3ed6bede3be8475f476acd3049
+        url = "https://www.virustotal.com/vtapi/v2/url/report"
+        params = {'apikey': 'd1bbf8a2f78253458ec70c75701ddf550e388a3ed6bede3be8475f476acd3049', 'resource': content}
+        response = requests.get(url, params=params).json()
+        # full_url = url+'?apikey=d1bbf8a2f78253458ec70c75701ddf550e388a3ed6bede3be8475f476acd3049'
+        print(params)
+        virus_em = discord.Embed(title='😎 No issues found', color=discord.Color.green(), description='✅ This site looks safe!')
+        if response['positives'] > 0:
+            virus_em.title = f'👹 {response["positives"]} threat(s) found.'
+            virus_em.color = discord.Color.red()
+            virus_em.description = f'⛔ Staap Kid. This site looks sketchy!'
+        # virus_em.add_field(name='')
+        virus_em.add_field(name='Requests URL', value=f"{response['resource']}\n\n[Full Report](%s)" % response['permalink'])
+        # virus_em.add_field(namer='Serving IP', value=f"{IP}")
+        virus_em.set_footer(text=f"Requested by: {ctx.author}\n|| Scan Date: {response['scan_date']}")
+
+        await ctx.send(embed=virus_em)
+    
+    except Exception:
+        virus_em_err = discord.Embed(title='Invalid URL')
+        virus_em_err.description = 'N/A'
+        await ctx.send(embed=virus_em_err)                          
 ##### Calling function which takes the TOKEN and then run the bot                          
 client.run(TOKEN)  
 
