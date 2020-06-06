@@ -466,20 +466,17 @@ async def virus(ctx, *, content):
     print("URL:", content )
     try:
 
-        # api- d1bbf8a2f78253458ec70c75701ddf550e388a3ed6bede3be8475f476acd3049
+        # api- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         url = "https://www.virustotal.com/vtapi/v2/url/report"
-        params = {'apikey': 'd1bbf8a2f78253458ec70c75701ddf550e388a3ed6bede3be8475f476acd3049', 'resource': content}
+        params = {'apikey': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'resource': content}
         response = requests.get(url, params=params).json()
-        # full_url = url+'?apikey=d1bbf8a2f78253458ec70c75701ddf550e388a3ed6bede3be8475f476acd3049'
         print(params)
         virus_em = discord.Embed(title='😎 No issues found', color=discord.Color.green(), description='✅ This site looks safe!')
         if response['positives'] > 0:
             virus_em.title = f'👹 {response["positives"]} threat(s) found.'
             virus_em.color = discord.Color.red()
             virus_em.description = f'⛔ Staap Kid. This site looks sketchy!'
-        # virus_em.add_field(name='')
         virus_em.add_field(name='Requests URL', value=f"{response['resource']}\n\n[Full Report](%s)" % response['permalink'])
-        # virus_em.add_field(namer='Serving IP', value=f"{IP}")
         virus_em.set_footer(text=f"Requested by: {ctx.author}\n|| Scan Date: {response['scan_date']}")
 
         await ctx.send(embed=virus_em)
@@ -487,7 +484,8 @@ async def virus(ctx, *, content):
     except Exception:
         virus_em_err = discord.Embed(title='Invalid URL')
         virus_em_err.description = 'N/A'
-        await ctx.send(embed=virus_em_err)                          
+        await ctx.send(embed=virus_em_err) 
+                            
 ##### Calling function which takes the TOKEN and then run the bot                          
 client.run(TOKEN)  
 
